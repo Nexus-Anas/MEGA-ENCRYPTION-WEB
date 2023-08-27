@@ -1,0 +1,86 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+<form method="post" enctype="multipart/form-data">
+    <div class="d-flex justify-content-center align-items-center">
+        <div id="main-card" class="card w-75 text-white" style="margin-top:30%; border-radius: 25px;">
+            <div class="card-body">
+                <h5 class="card-title text-center">MEGA ENCRYPTION</h5>
+
+                <input type="file" id="inputFile" name="files">
+                <label for="inputFile" id="lblFile">Choose File</label>
+                @if (Model.isFileEmpty)
+                {
+                    <span class="badge badge-danger ml-1">File is required!</span>
+                }
+
+
+                <input asp-for="Password" id="psw" type="password" placeholder="Type your password" />
+                <span asp-validation-for="Password" class="badge badge-danger ml-1"></span>
+
+                <div class="row d-flex justify-content-center buttons">
+                    <button asp-page-handler="Encrypt" class="col-xl-3 col-lg-3 col-md-4 col-sm-8 col-8 mr-2 ml-2 mt-4">ENCRYPT</button>
+                    <button asp-page-handler="Decrypt" class="col-xl-3 col-lg-3 col-md-4 col-sm-8 col-8 mr-2 ml-2 mt-4">DECRYPT</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</form>
+
+
+
+
+<div class="d-flex justify-content-center mt-5">
+    <div id="footer-card" class="card w-75 text-white" style="border-radius: 25px;">
+        <div class="card-body">
+            <div class="container text-center">
+
+                <section class="mb-3">
+                    
+                    <!-- Mail -->
+                    <a class="btn btn-outline-light m-1" style="border-radius:20px;" href="mailto:anas.vigilante@gmail.com" role="button" target="_blank" data-toggle="tooltip" data-placement="top" title="Contact Me on Mail">
+                        <i class="bi bi-envelope-fill"></i>
+                    </a>
+
+                    <!-- Linkedin -->
+                    <a class="btn btn-outline-light m-1" style="border-radius:20px;" href="https://www.linkedin.com/in/Anas-AREJDAL/" role="button" target="_blank" data-toggle="tooltip" data-placement="top" title="Contact Me on LinkedIn">
+                        <i class="bi bi-linkedin"></i>
+                    </a>
+
+                    <!-- Github -->
+                    <a class="btn btn-outline-light m-1" style="border-radius:20px;" href="https://github.com/The-Vigilante" role="button" target="_blank" data-toggle="tooltip" data-placement="top" title="Follow Me on GitHub">
+                        <i class="bi bi-github"></i>
+                    </a>
+
+                </section>
+
+            </div>
+
+            <div class="text-center p-2" style="background-color: rgba(0, 0, 0, 0.2); border-radius:25px">
+                © 2023 Copyright: MEGA ENCRYPTION
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+@section DocUploadJS {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#inputFile').on("change", function () {
+                var inputPicture = $(this).val().split("\\").pop();
+                $(this).next("#lblFile").html(inputPicture);
+            });
+        });
+    </script>
+}
